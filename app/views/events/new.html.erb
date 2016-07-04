@@ -1,0 +1,30 @@
+<%= form_for :event, url: events_path do |f| %>
+  <p>
+    <%= f.label :sport %><br>
+    <%= f.select :sport, ['soccer', 'tennis', 'football', 'baseball']%>
+  </p>
+
+  <p>
+    <%= f.label :description %><br>
+    <%= f.text_area :description %>
+  </p>
+
+  <p>
+    <%= f.label :datetime %><br>
+    <%= f.datetime_local_field :datetime %>
+  </p>
+ 
+  <p>
+    <%= f.label :min_num_players %><br>
+    <%= f.number_field(:min_num_players, in: 1..50) %>
+  </p>
+
+  <p>
+    <%= f.label :max_num_players %><br>
+    <%= f.number_field(:max_num_players, in: 1..50) %>
+  </p>
+ 
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
