@@ -1,7 +1,8 @@
 class EventsController < ApplicationController
 
   def index
-    @events = Event.all
+    @markers = Event.all
+    render :json => @markers
   end
 
   def new
@@ -21,7 +22,7 @@ class EventsController < ApplicationController
   protected
 
   def event_params
-    params.require(:event).permit(:sport, :description, :datetime, :min_num_players, :max_num_players)
+    params.require(:event).permit(:sport, :description, :date, :start_time, :end_time, :min_num_players, :max_num_players)
   end
 
 
