@@ -1,43 +1,19 @@
-<%= form_for :event, url: events_path do |f| %>
-  <p>
-    <%= f.label :sport %><br>
-    <%= f.select :sport, ['soccer', 'tennis', 'football', 'baseball']%>
-  </p>
 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
 
-  <p>
-    <%= f.label :date %><br>
-    <%= f.date_field :date %>
-  </p>
-
-  <p>
-    <%= f.label :start_time %><br>
-    <%= f.time_field :start_time %>
-  </p>
-
-  <p>
-    <%= f.label :end_time %><br>
-    <%= f.time_field :end_time %>
-  </p>
- 
-  <p>
-    <%= f.label :min_num_players %><br>
-    <%= f.number_field(:min_num_players, in: 1..50) %>
-  </p>
-
-  <p>
-    <%= f.label :max_num_players %><br>
-    <%= f.number_field(:max_num_players, in: 1..50) %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+<form>
+<select name="sport" id="sport">
+  <option disabled selected value> -- select an sport -- </option>
+  <option value="soccer">Soccer</option>
+  <option value="tennis">Tennis</option>
+  <option value="football">Football</option>
+  <option value="volleyball">Volleyball</option>
+</select>
+<input type="number" name="minnumber" id="minnumber" min="1" max="30">
+<input type="number" name="maxnumber" id="maxnumber" min="1" max="30">
+<input type="date" name="date" id="date">
+<input type="time" name="starttime" id="starttime">
+<input type="time" name="endtime" id="endtime">
+</form>
 
 <button type="button" id="submit-button">Send data</button>
 
@@ -75,11 +51,34 @@
               map: map
             });
           }
-
           latitude = location.lat();
           longitude = location.lng();
-           
+          
         }
+
+        $( "#sport" ).change(function() {
+          sport = $(this).find(":selected").text()
+        });
+
+        $( "#minnumber" ).change(function() {
+          minnumber = $(this).val()
+        });
+
+        $( "#maxnumber" ).change(function() {
+          maxnumber = $(this).val()
+        });
+
+        $( "#date" ).change(function() {
+          date = $(this).val()
+        });
+
+        $( "#starttime" ).change(function() {
+          starttime = $(this).val()
+        });
+
+        $( "#endtime" ).change(function() {
+          endtime = $(this).val()
+        });
 
         google.maps.event.addListener(map, 'click', function(event) {
           placeMarker(event.latLng);
@@ -89,7 +88,7 @@
           $ .ajax({
                 url : "/events",
                 type : "post",
-                data : { latitude: latitude, longitude: longitude }
+                data : { sport: sport, min_num_players: minnumber, max_num_players: maxnumber, latitude: latitude, longitude: longitude, start_time: starttime, end_time: endtime, date: date }
             });
         });
 

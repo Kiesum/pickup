@@ -12,11 +12,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    # @event = Event.new(event_params)
-    # @event.save
-    # redirect_to event_path(@event)
     @event = Event.new()
-    @event.update_attributes(latitude: params[:latitude], longitude: params[:longitude])
+    @event.update_attributes(sport: params[:sport], min_num_players: params[:min_num_players], max_num_players: params[:max_num_players], latitude: params[:latitude], longitude: params[:longitude], start_time: params[:start_time], end_time: params[:end_time], date: params[:date])
     @event.save
     redirect_to "/"
   end
