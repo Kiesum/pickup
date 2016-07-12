@@ -2,6 +2,9 @@
 
 <%= link_to 'events', events_path(@events) %>  
 <%= link_to 'new event', new_event_path(@event) %>
+<%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+<%= link_to 'Login', new_user_session_path, class: 'btn btn-primary btn-lg' %>
+<%= link_to 'Logout', destroy_user_session_path, :method => :delete,  class: 'btn btn-primary btn-lg' %>
 
 <html>
   <head>
