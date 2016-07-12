@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get 'welcome/index'
   root to: 'welcome#index'
 
+  resources :users, only: [:show]
+
   resources :events
 
   # The priority is based upon order of creation: first created -> highest priority.

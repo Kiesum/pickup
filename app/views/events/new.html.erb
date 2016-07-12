@@ -1,4 +1,4 @@
-
+<% if user_signed_in? %>
 
 <form>
 <select name="sport" id="sport">
@@ -29,6 +29,11 @@
   </head>
   <body>
     <div id="map"></div>
+    <% else %>
+
+    <p>please sign in</p>
+
+    <% end %>
     <script>
     
       function initMap() {
